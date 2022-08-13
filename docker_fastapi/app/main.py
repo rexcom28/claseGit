@@ -26,6 +26,13 @@ async def root():
 async def myName(name: str):
     return {"message": f"Hello {name} this is my new API!"}
 
+@app.get("/frank/{name}")
+async def myfrank(name: str):
+    if name == "frank":
+        return {"message": f"Hello Frank"}
+    else:
+        return {"message": f"Hello {name}"}
+
 
 @app.post("/users/create", response_model=schemas.UserCreate)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
